@@ -1,15 +1,9 @@
 import React from 'react';
+import MovieList from './MovieList.jsx'
+import movies from '../ExampleData/ExampleData.js'
 
-var movies = [
-  {title: 'Mean Girls'},
-  {title: 'Hackers'},
-  {title: 'The Grey'},
-  {title: 'Sunshine'},
-  {title: 'Ex Machina'},
-];
 
 const App = () => {
-
 
   return (
 
@@ -24,29 +18,29 @@ const App = () => {
 
 }
 
-const MovieList = ({movies}) => {
+// const MovieList = ({movies}) => {
 
 
-  return (
+//   return (
 
-    <tbody>
-      {movies.map(movie => <MovieListEntry movie = {movie} />)}
-    </tbody>
-
-
-  )
-}
-
-const MovieListEntry = ( {movie} ) => {
+//     <tbody>
+//       {movies.map(movie => <MovieListEntry movie = {movie} />)}
+//     </tbody>
 
 
-  return (
-    <tr>
-      <td>{movie.title}</td>
-    </tr>
-  )
+//   )
+// }
 
-}
+// const MovieListEntry = ( {movie} ) => {
+
+
+//   return (
+//     <tr>
+//       <td>{movie.title}</td>
+//     </tr>
+//   )
+
+// }
 
 export default App;
 

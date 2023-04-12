@@ -1,3 +1,5 @@
+import MovieListEntry from './MovieListEntry.jsx'
+
 const MovieList = ({movies}) => {
 
 
