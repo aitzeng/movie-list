@@ -1,3 +1,16 @@
 body {
   font-family: sans-serif, arial;
 }
+
+.movieTable {
+  border-collapse: collapse;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.movieTable th,
+.movieTable tr {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
