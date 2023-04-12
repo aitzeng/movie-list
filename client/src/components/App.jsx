@@ -2,6 +2,7 @@ import React from 'react';
 import MovieList from './MovieList.jsx';
 import movies from '../ExampleData/ExampleData.js';
 import Search from './Search.jsx';
+// import SubmitButton from './SubmitButton.jsx';
 
 const { useState } = React;
 
@@ -13,12 +14,12 @@ const App = () => {
   return (
 
     <div>
-      <nav className="navbar">
-        <div className="searchBar">
-          <Search search={searchInput}/>
-        </div>
-      </nav>
-      {/* <button type="button" onClick={}>Submit</button> */}
+      <form className="formbar">
+        <Search search={searchInput} setSearchInput={setSearchInput}/>
+        {/* <SubmitButton /> */}
+        {/* Before, I only had search={searchInput}. This only passes in the searchInput state and not the setSearchInput function */}
+        {/* <button className="searchButton">Press Me</button> */}
+      </form>
       <div>Movie List</div>
       <table className="movieTable">
         <MovieList movies = {movies} />
@@ -58,3 +59,4 @@ export default App;
   // Syntax with map JSX
     // Why do I need to cover it in curly braces
   // Table elements, how to add style
+  // Creating a submit button on the form.
