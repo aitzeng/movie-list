@@ -1,14 +1,24 @@
 import React from 'react';
-import MovieList from './MovieList.jsx'
-import movies from '../ExampleData/ExampleData.js'
+import MovieList from './MovieList.jsx';
+import movies from '../ExampleData/ExampleData.js';
+import Search from './Search.jsx';
+
+const { useState } = React;
 
 
 const App = () => {
 
+  const [searchInput, setSearchInput] = useState("");
+
   return (
 
-
     <div>
+      <nav className="navbar">
+        <div className="searchBar">
+          <Search search={searchInput}/>
+        </div>
+      </nav>
+      {/* <button type="button" onClick={}>Submit</button> */}
       <div>Movie List</div>
       <table className="movieTable">
         <MovieList movies = {movies} />
