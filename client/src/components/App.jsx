@@ -1,5 +1,4 @@
 import React from 'react';
-import MovieList from './MovieList.jsx';
 
 var movies = [
   {title: 'Mean Girls'},
@@ -15,7 +14,6 @@ const App = () => {
   return (
 
 
-
     <div>
       <div>Movie List</div>
       <table className="movieTable">
@@ -23,6 +21,30 @@ const App = () => {
       </table>
     </div>
   );
+
+}
+
+const MovieList = ({movies}) => {
+
+
+  return (
+
+    <tbody>
+      {movies.map(movie => <MovieListEntry movie = {movie} />)}
+    </tbody>
+
+
+  )
+}
+
+const MovieListEntry = ( {movie} ) => {
+
+
+  return (
+    <tr>
+      <td>{movie.title}</td>
+    </tr>
+  )
 
 }
 
