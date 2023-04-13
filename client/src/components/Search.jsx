@@ -1,19 +1,18 @@
 import React from 'react';
 
-const Search = ( {search, setSearchInput} ) => {
+const Search = ( {search, setSearchInput, filteringMovies} ) => {
 
   const handleChange = (e) => {
-    e.preventDefault();
     setSearchInput(e.target.value);
-  }
 
+  }
 
   return (
 
-    <div className="searchForm">
-      <input type="text" id="searchBar" value={search} onChange={handleChange}/>
-      <input type="submit" id="submitButton" value="Press Me"/>
-    </div>
+    <form className="searchForm" onSubmit={filteringMovies}>
+      <input type="text" id="searchBar" value={search} placeholder="Search..." onChange={handleChange}/>
+      <input type="submit" id="submitButton" value="Filter"/>
+    </form>
 
   )
 
