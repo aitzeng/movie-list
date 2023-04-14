@@ -1,15 +1,15 @@
 import React from 'react';
 
-const AddMovie = ( {input, addInput, addingMovies} ) => {
+const AddMovie = ( {input, setInput, addingMovies} ) => {
 
   var handleChange = function(e) {
-    addInput(e.target.value);
+    setInput(e.target.value);
   }
 
-  var submittingMovie = function(event, input) {
+  var submittingMovie = function() {
     event.preventDefault();
-    addingMovies(input)
-    addInput("")
+    addingMovies()
+    setInput("")
   }
 
   return (
