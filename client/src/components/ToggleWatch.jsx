@@ -1,20 +1,22 @@
 import React from 'react';
 
-const ToggleWatch = ({movies, watchFilter}) => {
+const ToggleWatch = ({movies, setBefore}) => {
 
+  var toWatchSubmit = function(e) {
+    e.preventDefault();
+    const toWatcher = movies.filter(m => m.watched === "To Watch");
+    setBefore(toWatcher)
+  }
   var watchedSubmit = function(e) {
     e.preventDefault();
-    watchFilter();
+    const toWatcher = movies.filter(m => m.watched === "Watched")
+    setBefore(toWatcher)
   }
 
   return (
     <div>
-      <form>
-        <input type="submit" className="WatchedList" value="To Watch"/>
-      </form>
-      <form onSubmit={watchedSubmit}>
-        <input type="submit" className="WatchedList" value="Watched"/>
-      </form>
+      <button onClick={toWatchSubmit} className="WatchedList">To Watch</button>
+      <button onClick={watchedSubmit} className="WatchedList">Watched</button>
     </div>
   )
 }
