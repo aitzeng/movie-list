@@ -8,15 +8,14 @@ const MovieListEntry = ( {movie} ) => {
   // const [currentMovie, setcurrentMovie] = useState(movie.watched)
   const [update, setUpdate] = useState(false)
 
-
   var handleClick = function(e) {
     e.preventDefault();
-    console.log(movie.watched);
-    if (movie.watched === "To Watch") {
-      movie.watched = "Watched"
+    console.log(movie.status);
+    if (movie.status === "To Watch") {
+      movie.status = "Watched"
       setUpdate(!update);
     } else {
-      movie.watched = "To Watch"
+      movie.status = "To Watch"
       setUpdate(!update);
     }
   };
@@ -24,7 +23,7 @@ const MovieListEntry = ( {movie} ) => {
   return (
     <tr onClick={handleClick}>
       <td>{movie.title}</td>
-      <td>{movie.watched}</td>
+      <td>{movie.status}</td>
     </tr>
   )
 
