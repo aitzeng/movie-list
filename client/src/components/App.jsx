@@ -3,7 +3,8 @@ import MovieList from './MovieList.jsx';
 import movies from '../ExampleData/ExampleData.js';
 import Search from './Search.jsx';
 import AddMovie from './AddMovie.jsx';
-import ToggleWatch from './ToggleWatch.jsx'
+import ToggleWatch from './ToggleWatch.jsx';
+import axios from 'axios';
 // import SubmitButton from './SubmitButton.jsx';
 
 const { useState, useEffect } = React;
@@ -11,7 +12,7 @@ const { useState, useEffect } = React;
 const App = () => {
 
   const [allMovies, setAllMovies] = useState([]); //Change to [] when want to have no example data
-  const [input, setInput] = useState("")
+  // const [input, setInput] = useState("")
   // Sets the current state of the Search Input. Current state will be set to "", but as the value changes, it will update the state to reflect it.
   const [searchInput, setSearchInput] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(allMovies);
@@ -26,9 +27,32 @@ const App = () => {
 
   // This will change it so that everytime allMovies state changes, my filteredMovies is updated to it.
 
-  const addingMovies = function() {
-    var addedMovie = [...allMovies, {title: input, watched: "To Watch"} ]
-    setAllMovies(addedMovie);
+  const server = 'http://localhost:3000/api/movies'
+
+  useEffect(() => {
+    axios.get(server)
+      .then((res) => setAllMovies(res.data))
+  })
+
+  // const addingMovies = function() {
+  //   var addedMovie = [...allMovies, {title: input, status: "To Watch"} ]
+  //   setAllMovies(addedMovie);
+  // }
+
+  function readAll() {
+    axios.get(server)
+    .then((res) => setAllMovies(res.data))
+  }
+  // Post Request
+  function create(addition) {
+    axios.post(server, addition)
+    .then((res) => setAllMovies(res.data))
+  }
+
+  // Put request
+  function update(data) {
+    axios.put(server)
+    .then(response => setAllMovies(response))
   }
 
   useEffect(() => {
@@ -55,7 +79,7 @@ const App = () => {
     const filtered = allMovies.filter(movie => movie.title.toLowerCase().includes(searchInput.toLowerCase()))
     setFilteredMovies(filtered);
     setSearchInput("")
-    console.log('This is allMovies:', allMovies)
+    // console.log('This is allMovies:', allMovies)
   }
 
   // useEffect takes an anonymous function and a state. If it notices the state has changed, it will invoke the anonymous function
@@ -68,7 +92,7 @@ const App = () => {
 
     <div>
       <div>Movie List</div>
-      <AddMovie input={input} setInput={setInput} addingMovies={addingMovies}/>
+      <AddMovie create={create}/>
       <Search search={searchInput} setSearchInput={setSearchInput} filteringMovies={filteringMovies}/>
       {/* <SubmitButton /> */}
       {/* Before, I only had search={searchInput}. This only passes in the searchInput state and not the setSearchInput function */}
@@ -83,30 +107,6 @@ const App = () => {
   );
 
 }
-
-// const MovieList = ({movies}) => {
-
-
-//   return (
-
-//     <tbody>
-//       {movies.map(movie => <MovieListEntry movie = {movie} />)}
-//     </tbody>
-
-
-//   )
-// }
-
-// const MovieListEntry = ( {movie} ) => {
-
-
-//   return (
-//     <tr>
-//       <td>{movie.title}</td>
-//     </tr>
-//   )
-
-// }
 
 export default App;
 
