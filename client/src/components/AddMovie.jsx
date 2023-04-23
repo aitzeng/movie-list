@@ -1,14 +1,20 @@
 import React from 'react';
 
-const AddMovie = ( {input, setInput, addingMovies} ) => {
+const {useState, useEffect } = React;
+
+const AddMovie = ( {create} ) => {
+
+  const [input, setInput] = useState('')
 
   var handleChange = function(e) {
     setInput(e.target.value);
   }
 
+
   var submittingMovie = function() {
     event.preventDefault();
-    addingMovies()
+    let addedMovie = {title: input, status: "To Watch"};
+    create(addedMovie)
     setInput("")
   }
 
